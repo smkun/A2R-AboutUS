@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <title>Meet Our Team - Affairs to Remember Florist</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+            body {
+                font-family: "Poppins", sans-serif;
+                background-color: #ffffff;
+                color: #333;
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #bb3bb6, #457044);
+                padding: 2rem 0;
+                text-align: center;
+                position: relative;
+            }
+
+            .header::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="25" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="15" r="2.5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="35" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="60" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="70" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>')
+                    repeat;
+            }
+
+            .header h1 {
+                color: #ffffff;
+                font-size: 3rem;
+                margin-bottom: 0.5rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                position: relative;
+                z-index: 1;
+                animation: fadeInDown 1s ease-out;
+            }
+
+            .header p {
+                color: #ffffff;
+                font-size: 1.2rem;
+                opacity: 0.9;
+                position: relative;
+                z-index: 1;
+                animation: fadeInUp 1s ease-out 0.3s both;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem 1rem;
+            }
+
+            .team-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .team-member {
+                background: #ffffff;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(187, 59, 182, 0.1);
+                transition: all 0.3s ease;
+                position: relative;
+                animation: fadeInUp 0.8s ease-out both;
+            }
+
+            .team-member:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+            .team-member:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .team-member:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+            .team-member:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+            .team-member:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+
+            .team-member:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(187, 59, 182, 0.2);
+            }
+
+            .team-member::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 5px;
+                background: linear-gradient(90deg, #bb3bb6, #457044);
+                transition: height 0.3s ease;
+            }
+
+            .team-member:hover::before {
+                height: 8px;
+            }
+
+            .member-image {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .team-member:hover .member-image {
+                transform: scale(1.05);
+            }
+
+            .member-info {
+                padding: 1.5rem;
+            }
+
+            .member-name {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #bb3bb6;
+                margin-bottom: 0.5rem;
+            }
+
+            .member-title {
+                font-size: 1rem;
+                color: #457044;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .member-bio {
+                color: #666;
+                line-height: 1.7;
+                font-size: 0.95rem;
+            }
+
+            .fun-fact {
+                background: linear-gradient(135deg, #bb3bb6, #457044);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 15px;
+                margin-top: 1rem;
+                font-size: 0.9rem;
+                font-style: italic;
+                position: relative;
+            }
+
+            .fun-fact::before {
+                content: "🌸";
+                margin-right: 0.5rem;
+            }
+
+            .floating-flowers {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            .flower {
+                position: absolute;
+                font-size: 1.5rem;
+                opacity: 0.1;
+                animation: float 6s infinite linear;
+            }
+
+            @keyframes float {
+                from {
+                    transform: translateY(100vh) rotate(0deg);
+                }
+                to {
+                    transform: translateY(-100px) rotate(360deg);
+                }
+            }
+
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .sparkle {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background: #bb3bb6;
+                border-radius: 50%;
+                animation: sparkle 2s infinite;
+            }
+
+            @keyframes sparkle {
+                0%,
+                100% {
+                    opacity: 0;
+                    transform: scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .header h1 {
+                    font-size: 2rem;
+                }
+
+                .team-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
+                }
+
+                .member-image {
+                    height: 200px;
+                }
+            }
+
+            .logo-container {
+                text-align: center;
+                margin: 2rem 0;
+            }
+
+            .logo {
+                max-width: 200px;
+                height: auto;
+                filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+                animation: pulse 3s infinite;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div
+            class="floating-flowers"
+            id="flowers"></div>
+
+        <header class="header">
+            <h1>Meet Our Amazing Team</h1>
+            <p>The creative hearts behind Affairs to Remember Florist</p>
+        </header>
+
+        <div class="container">
+            <div class="logo-container">
+                <img
+                    src="a2rlogo.png"
+                    alt="Affairs to Remember Florist Logo"
+                    class="logo" />
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <img
+                        src="Lori.png"
+                        alt="Lori Kunian"
+                        class="member-image" />
+                    <div class="member-info">
+                        <h3 class="member-name">Lori Kunian</h3>
+                        <p class="member-title">Owner & Master Florist</p>
+                        <div class="member-bio">
+                            Lori has over 40 years of experience and is the only
+                            AIFD-trained florist in the area. She leads Affairs
+                            to Remember Florist with unmatched skill.
+                            <br /><br />
+                            Her arrangements blend precision and creativity.
+                            Every design is personal, thoughtful, and full of
+                            heart. She stays serious when needed but lights up
+                            when she designs.
+                        </div>
+                        <div class="fun-fact">
+                            Lives on a beer budget with champagne taste. Her
+                            favorite flower is Stock for its soft texture and
+                            nutmeg scent.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img
+                        src="Ben.jpg"
+                        alt="Ben Smith"
+                        class="member-image" />
+                    <div class="member-info">
+                        <h3 class="member-name">Ben Smith</h3>
+                        <p class="member-title">Manager</p>
+                        <div class="member-bio">
+                            Ben is the youngest team member and a natural
+                            designer with a sharp eye. Taught by Lori, he brings
+                            energy and new ideas to every arrangement.
+                            <br /><br />
+                            He experiments with bold colors, grows his own
+                            flowers, and travels to flower farms worldwide.
+                        </div>
+                        <div class="fun-fact">
+                            His eclectic music taste and love for all blooms
+                            brighten the shop daily. Customers feel welcome
+                            around his calm, kind presence.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img
+                        src="Deb.jpg"
+                        alt="Deb McCabe"
+                        class="member-image" />
+                    <div class="member-info">
+                        <h3 class="member-name">Deb McCabe</h3>
+                        <p class="member-title">Florist</p>
+                        <div class="member-bio">
+                            Deb has worked at the shop for 9 years. She grew
+                            from carefree to confident and now leads with her
+                            creativity and warmth.
+                            <br /><br />
+                            She studied music, plays the cello, and often sings
+                            in the shop. Her energy lifts the team and her
+                            arrangements make customers smile.
+                        </div>
+                        <div class="fun-fact">
+                            Spends time outdoors with her son, Colin. Her
+                            designs and personality bring joy and inclusion to
+                            every visitor.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img
+                        src="Joe.png"
+                        alt="Joe Spinale"
+                        class="member-image" />
+                    <div class="member-info">
+                        <h3 class="member-name">Joe Spinale</h3>
+                        <p class="member-title">Delivery Driver</p>
+                        <div class="member-bio">
+                            Joe supports both shop and road operations. He keeps
+                            things organized and running well.
+                            <br /><br />
+                            Before joining, he was a district manager at 99
+                            Restaurant. His professionalism and management
+                            skills now strengthen the team.
+                        </div>
+                        <div class="fun-fact">
+                            Off duty, he golfs, tends his yard, and relaxes with
+                            his grandkids. He sees beauty in every bloom and
+                            brings order wherever he goes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img
+                        src="Sonny.jpg"
+                        alt="Sonny Candelieri"
+                        class="member-image" />
+                    <div class="member-info">
+                        <h3 class="member-name">Sonny Candelieri</h3>
+                        <p class="member-title">Delivery Driver</p>
+                        <div class="member-bio">
+                            Sonny mixes humor, care, and strength. A former
+                            wrestler and a painter, he brings energy and
+                            creativity to every delivery.
+                            <br /><br />
+                            He's quick with a joke and sharp with details. He
+                            makes each bouquet's journey personal.
+                        </div>
+                        <div class="fun-fact">
+                            Family comes first for Sonny. He enjoys good food
+                            and great company. His presence is warm, neat, and
+                            always remembered.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Floating flowers animation
+            function createFloatingFlower() {
+                const flowers = ["🌸", "🌺", "🌻", "🌷", "🌹", "🌼", "🏵️"];
+                const flower = document.createElement("div");
+                flower.className = "flower";
+                flower.textContent =
+                    flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.animationDuration = Math.random() * 3 + 3 + "s";
+                flower.style.fontSize = Math.random() * 0.8 + 0.8 + "rem";
+
+                document.getElementById("flowers").appendChild(flower);
+
+                setTimeout(() => {
+                    flower.remove();
+                }, 6000);
+            }
+
+            // Create floating flowers periodically
+            setInterval(createFloatingFlower, 800);
+
+            // Add sparkle effect on hover
+            document.querySelectorAll(".team-member").forEach((member) => {
+                member.addEventListener("mouseenter", function () {
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => {
+                            const sparkle = document.createElement("div");
+                            sparkle.className = "sparkle";
+                            sparkle.style.left = Math.random() * 100 + "%";
+                            sparkle.style.top = Math.random() * 100 + "%";
+                            this.appendChild(sparkle);
+
+                            setTimeout(() => {
+                                sparkle.remove();
+                            }, 2000);
+                        }, i * 100);
+                    }
+                });
+            });
+
+            // Add scroll animation trigger
+            function animateOnScroll() {
+                const elements = document.querySelectorAll(".team-member");
+                const windowHeight = window.innerHeight;
+
+                elements.forEach((element) => {
+                    const elementTop = element.getBoundingClientRect().top;
+
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = "1";
+                        element.style.transform = "translateY(0)";
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", animateOnScroll);
+            window.addEventListener("load", animateOnScroll);
+
+            // Add click interaction for fun facts
+            document.querySelectorAll(".fun-fact").forEach((fact) => {
+                fact.addEventListener("click", function () {
+                    this.style.transform = "scale(1.05)";
+                    this.style.boxShadow = "0 5px 20px rgba(187, 59, 182, 0.3)";
+
+                    setTimeout(() => {
+                        this.style.transform = "scale(1)";
+                        this.style.boxShadow = "none";
+                    }, 200);
+                });
+            });
+
+            // Logo animation on click
+            document
+                .querySelector(".logo")
+                .addEventListener("click", function () {
+                    this.style.animation = "none";
+                    setTimeout(() => {
+                        this.style.animation = "pulse 3s infinite";
+                    }, 10);
+                });
+        </script>
+    </body>
+</html>
